@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RegisterForm } from 'src/app/register/models/register-view-models';
 import { RegisterService } from 'src/app/register/service/register.service';
+import { Chat } from '../model/chat.model';
 
 @Component({
   selector: 'app-chat-view',
@@ -13,9 +14,18 @@ export class ChatViewComponent implements OnInit {
   registerForm!: FormGroup;
   registrations: RegisterForm[] =[];
 
+  messageForm!:FormGroup;
+
+  conversation:Chat[] = [];
+
   constructor(private registerServce: RegisterService) { }
 
-  ngOnInit(): void {   
+  ngOnInit(): void {  
+    this.messageForm= new FormGroup({
+       message: new FormControl(null,[
+         Validators.required
+       ])
+    }); 
     this.registerServce.registrations$.subscribe((registerData) => {
       this.registrations = registerData; 
     });
@@ -39,5 +49,17 @@ export class ChatViewComponent implements OnInit {
     console.log(" outside");
   }
 
+  sendMessage(data:any):void{
+   console.log(data.message);
+   const newConversation: Chat[] = [{
+     message: data.message,
+     timeStamp: "+122",
+     chatRoom: "Fun with Taxes",
+     screenName: "RandomUser"
+   }, ...this.conversation];
+   this.conversation = newConversation;
+   console.log("newConversation", newConversation);
+   //this.conversation[0].message = data.message;
 
+  }
 }
