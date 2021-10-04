@@ -1,0 +1,35 @@
+form {
+
+  mat-form-field{
+    border-radius: 5px;
+    width: 30%;
+    
+  }
+
+  span {
+    transform: scale(2.7);
+    margin: 1.4% 1%;
+    flex: auto;
+    border-radius: 3px;
+    transform-origin: center;
+    height: 100%;
+  
+  }
+  
+  .chatRoomsDiv{
+    flex-direction: column;
+    width: 30%;
+    margin-left: 5%;
+  }
+
+  mat-list-option {
+    border: 1px solid lightgray;
+    border-radius: 2px;
+  }
+  .user-submit{
+    position: relative;
+    margin-top:2%;
+    left:30%;
+  }
+ 
+}

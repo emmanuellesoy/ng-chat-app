@@ -1,0 +1,22 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
+    <div>
+        <span class="user-icon" class="material-icons md-dark disabled">account_box</span>
+        <mat-form-field appearance="outline">
+            <input matInput placeholder="ScreenName" formControlName="screenName" >
+            <mat-hint *ngIf="registerForm.controls.screenName.errors">ScreenName is Required</mat-hint>
+        </mat-form-field>
+    </div>
+
+    <br/>
+    <div class="chatRoomsDiv" layout="column">
+        <div layout="row" flex class="three">
+            <mat-card isActive style="background-color: blue; color:white">Chat Rooms</mat-card>
+            <mat-selection-list #rooms [multiple]="false" formControlName="selectedChatRoom">
+                <mat-list-option appearance="outline" *ngFor="let room of chatRooms" [value]="room">
+                {{room}}
+                </mat-list-option>
+            </mat-selection-list>
+        </div>
+    </div>
+    <button class="user-submit" mat-raised-button color="primary" type="submit">Register</button>
+</form>
