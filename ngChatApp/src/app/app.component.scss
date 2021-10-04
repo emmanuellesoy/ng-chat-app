@@ -1,0 +1,35 @@
+
+.app-shell {
+    .toolbar-actions {
+          position: relative;
+          left: 80%;       
+      }
+      .main {
+          margin-left: 32px;
+          min-height: 95vh;
+  
+          h1 {
+              text-align: center;
+          }
+          a {
+              text-decoration: none;
+              color: white;
+              padding-right: 2%;
+          }
+      }
+  
+      mat-toolbar {
+          a {
+              text-decoration: none;
+              color: white;
+              padding-right: 2%;
+          }
+          .toolbar-actions {
+              list-style-type: none;
+              padding: 0 0 0 16px;
+              text-align: left;          
+          }
+      }
+  }
+  
+  
