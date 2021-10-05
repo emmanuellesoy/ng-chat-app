@@ -1,15 +1,23 @@
 <div class="container">
-   
+    <div class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom">
+        <input class="fs-5 fw-semibold" ([ngModel])= "username"/>
+    </div>
+
    <div class="ngChatForm">
-    <form [formGroup]="messageForm" (ngSubmit)="sendMessage(messageForm.value)">
+    <form class="form-control" [formGroup]="messageForm" (ngSubmit)="sendMessage(messageForm.value)">
         <input formControlName="message" placeholder="chat here"> 
         <button type="submit">send</button>
        </form>
    </div>
 
-   <div class="convoView" *ngFor = "let c of conversation">
-       {{c.message}}
-       
-
-   </div>
+    <div class="list-group list-group-flush border-bottom scrollarea">
+        <div class="list-group-item list-group-item-action py-3 lh-tight"
+          *ngFor = "let c of conversation"
+        >
+   
+    <div class="d-flex w-100 align-items-center justify-content-between">
+            <strong class="mb-1">username</strong>
+            <div class="col-10 mb-1 small">{{c.chatRoom}} ------------------- {{c.message}} ---- {{c.timeStamp}}</div>
+    </div>
+</div>
 </div>

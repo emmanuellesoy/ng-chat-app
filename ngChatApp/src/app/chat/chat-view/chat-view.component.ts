@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RegisterForm } from 'src/app/register/models/register-view-models';
 import { RegisterService } from 'src/app/register/service/register.service';
+import { ConversationComponent } from '../conversation/conversation.component';
 import { Chat } from '../model/chat.model';
+import { ChatService } from '../service/chat.service';
 
 @Component({
   selector: 'app-chat-view',
@@ -15,10 +17,12 @@ export class ChatViewComponent implements OnInit {
   registrations: RegisterForm[] =[];
 
   messageForm!:FormGroup;
-
   conversation:Chat[] = [];
 
-  constructor(private registerServce: RegisterService) { }
+
+  username ='username';
+
+  constructor(private registerServce: RegisterService, private chatService : ChatService) { }
 
   ngOnInit(): void {  
     this.messageForm= new FormGroup({
@@ -53,13 +57,13 @@ export class ChatViewComponent implements OnInit {
    console.log(data.message);
    const newConversation: Chat[] = [{
      message: data.message,
-     timeStamp: "+122",
-     chatRoom: "Fun with Taxes",
-     screenName: "RandomUser"
+     timeStamp: new Date(),
+     chatRoom: 'Fun With Taxes',          //currentRegisterForm
+     screenName: this.username
    }, ...this.conversation];
    this.conversation = newConversation;
    console.log("newConversation", newConversation);
-   //this.conversation[0].message = data.message;
+   this.chatService.sendChat(this.messageForm.value);
+  } 
 
-  }
 }

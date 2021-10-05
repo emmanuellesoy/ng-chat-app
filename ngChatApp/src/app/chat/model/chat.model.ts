@@ -1,6 +1,6 @@
 export interface Chat{
 message:string,
-timeStamp:string,
+timeStamp: Date,
 chatRoom:string,
 screenName:string
 
